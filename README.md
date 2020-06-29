@@ -8,9 +8,14 @@ A snake game controlled by an AI agent.
 
 The game is developed using pygame. The goal for the snake is to eat as much as food as possible before it eats itself or hits one of the four borders. The agent is able to score over 50 after 500 episodes of training (which takes less than 15 seconds).
 
-The agent is trained using the Q-learning algorithm. The agent receives a reward of +50 when the the food is eaten, and a penalty of -30 when the snake eats itself or hits a border. To discourage any redundant step, the agent receives a penalty of -1 for each step it has taken.
+The agent is trained using the Q-learning algorithm. The agent receives a reward of +50 when the the food is eaten, and a penalty of -30 when the snake eats itself or hits a wall. To discourage any redundant step, the agent receives a penalty of -1 for each step it has taken.
 
-A navie state space would use the exact positions of the snake and food. In an n^2 board, each square has four possible conditions: empty, occupied by the food, occupied by the head of the snake, or occupied by the body of the snake. In this approach, the number of possible states is (n^2)^4, which makes training difficult. The state space used in this algorithm only considers (a) whether there is an object (food, snake's body, or a border) adjacent to the snake head in the straight, left and right directions, and (b) whether the food is in front of/behind the snake and to the left/right of the snake. The size of the state space is, therefore, reduced to 3^3 x 2^2. However, since the agent can only read one step ahead, it does have a tendency to trap itself into a location when it doesn't have sufficient space to get itself out.
+A navie state space would use the exact positions of the snake and food. In an n^2 board, each square has four possible conditions: empty, occupied by the food, occupied by the head of the snake, or occupied by the body of the snake. In this approach, the number of possible states is (n^2)^4, which makes training difficult. The state space used in this algorithm only considers 
+
+1. whether the snake is going to hit an object (food, snake's body, or a wall) if it goes straight, left and right, and 
+2.  whether the food is in front of/behind the snake and to the left/right of the snake. 
+
+The size of the state space is, therefore, reduced to 3^3 x 2^2. However, since the agent can only read one step ahead, it does have a tendency to trap itself into a location where it doesn't have sufficient space to get itself out.
 
 ## Installation
 
